@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 840480476}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -302,9 +302,20 @@ MonoBehaviour:
     m_ActionId: 78187cc6-9df0-4b52-9686-1f12050b8f72
     m_ActionName: Default/Movement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 373421c5-236c-4bf9-9593-5dcef076ea98
-    m_ActionName: Default/Aux[/Keyboard/a,/Keyboard/d]
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: InputReceived
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 0e8b11be-2fd6-453e-bfbc-032acfb34b37
+    m_ActionName: Default/Interaction[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Default
   m_DefaultActionMap: Default

@@ -25,6 +25,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Interaction"",
+                    ""type"": ""Button"",
+                    ""id"": ""0e8b11be-2fd6-453e-bfbc-032acfb34b37"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -82,6 +90,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e02dde8f-6bb3-4061-9dea-f057bd81d0b7"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interaction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -103,6 +122,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         // Default
         m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
         m_Default_Movement = m_Default.FindAction("Movement", throwIfNotFound: true);
+        m_Default_Interaction = m_Default.FindAction("Interaction", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -153,11 +173,13 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Default;
     private IDefaultActions m_DefaultActionsCallbackInterface;
     private readonly InputAction m_Default_Movement;
+    private readonly InputAction m_Default_Interaction;
     public struct DefaultActions
     {
         private @InputActions m_Wrapper;
         public DefaultActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Default_Movement;
+        public InputAction @Interaction => m_Wrapper.m_Default_Interaction;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -170,6 +192,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
+                @Interaction.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnInteraction;
+                @Interaction.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnInteraction;
+                @Interaction.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnInteraction;
             }
             m_Wrapper.m_DefaultActionsCallbackInterface = instance;
             if (instance != null)
@@ -177,6 +202,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Interaction.started += instance.OnInteraction;
+                @Interaction.performed += instance.OnInteraction;
+                @Interaction.canceled += instance.OnInteraction;
             }
         }
     }
@@ -193,5 +221,6 @@ public class @InputActions : IInputActionCollection, IDisposable
     public interface IDefaultActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnInteraction(InputAction.CallbackContext context);
     }
 }
