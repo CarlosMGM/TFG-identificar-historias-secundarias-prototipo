@@ -11,6 +11,7 @@ public class QuestStarterNPC : NPC
     
     public override void Interact()
     {
+        Debug.Log("starting quest " + quest);
         QuestManager.StartQuest(quest);
     }
     

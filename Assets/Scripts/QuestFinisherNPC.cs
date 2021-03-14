@@ -9,6 +9,7 @@ public class QuestFinisherNPC : NPC
     public Quest quest;
     public override void Interact()
     {
+        Debug.Log("Finishing quest " + quest);
         QuestManager.EndQuest(quest);
     }
     
