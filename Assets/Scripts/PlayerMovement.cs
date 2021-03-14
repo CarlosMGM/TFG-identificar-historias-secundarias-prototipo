@@ -10,11 +10,11 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
 
     Rigidbody2D rb;
-    Animator animator;
+    //Animator animator;
 
     void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
     public void Movement(InputAction.CallbackContext context)
