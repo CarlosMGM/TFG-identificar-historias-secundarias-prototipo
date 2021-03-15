@@ -132,7 +132,6 @@ GameObject:
   - component: {fileID: 54240115}
   - component: {fileID: 54240116}
   - component: {fileID: 54240118}
-  - component: {fileID: 54240117}
   - component: {fileID: 54240119}
   m_Layer: 0
   m_Name: Not Important NPC
@@ -206,21 +205,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &54240117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54240114}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5869fc2638f113040a117cdf5be31a34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  interact: 0
-  player: {fileID: 0}
 --- !u!114 &54240118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -592,8 +576,6 @@ GameObject:
   - component: {fileID: 688126106}
   - component: {fileID: 688126107}
   - component: {fileID: 688126110}
-  - component: {fileID: 688126109}
-  - component: {fileID: 688126108}
   - component: {fileID: 688126111}
   m_Layer: 0
   m_Name: Quest Finisher NPC
@@ -667,36 +649,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &688126108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688126105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5869fc2638f113040a117cdf5be31a34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  interact: 0
-  player: {fileID: 0}
---- !u!114 &688126109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688126105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60430ebec4b2afa4a924b33b6ab7d9ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  interact: 0
-  player: {fileID: 0}
 --- !u!114 &688126110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29828,8 +29780,8 @@ Transform:
   m_Children:
   - {fileID: 99984945}
   - {fileID: 682455926}
-  - {fileID: 1462792530}
   - {fileID: 370541666}
+  - {fileID: 1462792530}
   - {fileID: 170835069}
   - {fileID: 895392143}
   - {fileID: 2103435065}
@@ -42579,8 +42531,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2114793128}
   - component: {fileID: 2114793129}
-  - component: {fileID: 2114793132}
-  - component: {fileID: 2114793131}
   - component: {fileID: 2114793130}
   - component: {fileID: 2114793133}
   m_Layer: 0
@@ -42664,36 +42614,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 76b888bf8f34bde4b8882928b7a68ae0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  interact: 0
-  player: {fileID: 0}
---- !u!114 &2114793131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2114793127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5869fc2638f113040a117cdf5be31a34, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 0
-  interact: 0
-  player: {fileID: 0}
---- !u!114 &2114793132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2114793127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60430ebec4b2afa4a924b33b6ab7d9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   range: 0
@@ -42880,6 +42800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: LA CAJA
+  type: 
 --- !u!212 &2139201612
 SpriteRenderer:
   m_ObjectHideFlags: 0

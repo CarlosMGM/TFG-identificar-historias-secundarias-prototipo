@@ -33,16 +33,17 @@ public class Interactable : MonoBehaviour{
         }
     }
     
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
         if(col.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Colisión con: " + gameObject);
             range = true;
             playerInteractionManager.objectToInteract = this;
         }
     }
     
-    void OnTriggerExit2D(Collider2D col)
+    void OnCollisionExit2D(Collision2D col)
     {
         if(col.gameObject.CompareTag("Player"))
         {
