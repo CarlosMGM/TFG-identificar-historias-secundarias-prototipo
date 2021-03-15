@@ -8,11 +8,20 @@ public class QuestStarterNPC : NPC
     // Start is called before the first frame update
 
     public Quest quest;
+    public Item givenItem;
     
     public override void Interact()
     {
-        Debug.Log("starting quest " + quest);
-        QuestManager.StartQuest(quest);
+        if(!(quest.activated || quest.used))
+        {
+            Debug.Log("starting quest " + quest);
+            quest.activated = true;
+            QuestManager.StartQuest(quest);
+        }
+        else
+        {
+            base.Interact();
+        }
     }
 
 
@@ -20,6 +29,7 @@ public class QuestStarterNPC : NPC
     {
         base.Start();
         quest = new Quest();
+        quest.givenItem = givenItem;
     }
 
 }

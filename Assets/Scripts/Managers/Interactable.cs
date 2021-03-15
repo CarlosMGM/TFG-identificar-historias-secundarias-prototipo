@@ -3,8 +3,6 @@ using UnityEngine.InputSystem;
 
 public class Interactable : MonoBehaviour{
     public bool range;
-    //public string interactKey = "space";
-    public bool interact = false;
 
     public GameObject player;
     private PlayerInteractionManager playerInteractionManager;
@@ -23,13 +21,10 @@ public class Interactable : MonoBehaviour{
 
     public void InputReceived(InputAction.CallbackContext c)
     {
-        Debug.Log("Hey, se ha pulsado una tecla");
-        if (range && !interact)
+        if (range)
         {
-            Debug.Log("Esta en rango de: " + gameObject);
-            Debug.Log("Interaccion");
+            Debug.Log("Interaccion con " + gameObject);
             Interact();
-            interact = true;
         }
     }
     

@@ -5,12 +5,12 @@ using UnityEngine;
 public class Inventory
 {
     //Objetos del inventario
-    private List<Item> keyItemList = new List<Item>();
-    private Dictionary<Item, int> itemList = new Dictionary<Item, int>();
+    private static List<Item> keyItemList = new List<Item>();
+    private static Dictionary<Item, int> itemList = new Dictionary<Item, int>();
 
     //Funcion de añadir
-    public void AddItem(Item item){
-        if(item.type == "key"){
+    public static void AddItem(Item item){
+        if(item.type == Item.ItemType.Key){
             keyItemList.Add(item);
         }
         else{
@@ -25,8 +25,8 @@ public class Inventory
     }
 
     //Función de quitar
-    public void RemoveItem(Item item){
-        if(item.type == "key"){
+    public static void RemoveItem(Item item){
+        if(item.type == Item.ItemType.Key){
             keyItemList.Remove(item);
         }
         else{
@@ -41,13 +41,21 @@ public class Inventory
             }
         }
     }
+
+    public static bool FindItem(Item item)
+    {
+        if (item.type == Item.ItemType.Key)
+            return keyItemList.Contains(item);
+        else
+            return itemList.ContainsKey(item);
+    }
     
     //Funcion consumir/usar
-    public void UseItem(Item item){
+    public static void UseItem(Item item){
         //Realizas tu acción
         item.Effect();
 
-        if(item.type != "key"){
+        if(item.type == Item.ItemType.Consumable){
             RemoveItem(item);
         }
     }

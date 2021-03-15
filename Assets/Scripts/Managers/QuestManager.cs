@@ -22,7 +22,8 @@ public class QuestManager
         quest.BeginScene(quest.startScene);
         if (!(quest.givenItem is null))
         {
-            ; // Dar objeto}
+            Inventory.AddItem(quest.givenItem);
+            Debug.Log("¡Obtuviste " + quest.givenItem + "!");
         }
         
         quest.startScene._used = true;
@@ -34,7 +35,16 @@ public class QuestManager
         quest.BeginScene(quest.endScene);
         if (!(quest.itemToGive is null))
         {
-            ; // Quitar objeto, si se tiene. Si no, ups, no puedes acabar la quest.
+            if (Inventory.FindItem(quest.itemToGive))
+            {
+                Debug.Log("Entregaste " + quest.itemToGive);
+                Inventory.RemoveItem(quest.itemToGive);
+            }
+            else
+            {
+                Debug.Log("¡Te falta " + quest.itemToGive + "!");
+                return;
+            }
         }
         
         quest.endScene._used = true;

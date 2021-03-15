@@ -11,10 +11,8 @@ public class PlayerInteractionManager : MonoBehaviour
     
     public void InputReceived(InputAction.CallbackContext c)
     {
-        Debug.Log("Hey, se ha pulsado una tecla");
         if (objectToInteract != null)
         {
-            Debug.Log("Interactuando con " + objectToInteract.gameObject);
             objectToInteract.InputReceived(c);
         }
     }

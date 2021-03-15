@@ -28,6 +28,7 @@ public class Quest
     // public MonoBehaviour questType;
 
     public bool used;
+    public bool activated;
     
     // Start is called before the first frame update
     public Quest()
