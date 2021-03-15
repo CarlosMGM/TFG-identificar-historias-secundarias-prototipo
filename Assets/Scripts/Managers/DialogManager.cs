@@ -158,7 +158,7 @@ public class DialogManager : MonoBehaviour
     {
         GameObject o;
 
-        float posOrY = m_columns.position.y + (m_columns.rect.height / m_current.GetNumOptions());
+        float posOrY = m_columns.position.y + (m_columns.rect.height / 3);
 
         for (int i = 0; i < m_current.GetNumOptions(); i++)
         {
