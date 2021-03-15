@@ -8,15 +8,15 @@
       "options": [
         {
           "nodePtr": 1,
-          "text": "Esto es una opción."
+          "text": "Esto es una opción. 1"
         },
         {
           "nodePtr": 2,
-          "text": "Esto es una opción."
+          "text": "Esto es una opción. 2"
         },
         {
           "nodePtr": 3,
-          "text": "Esto es una opción."
+          "text": "Esto es una opción. 3"
         }
       ]
     },

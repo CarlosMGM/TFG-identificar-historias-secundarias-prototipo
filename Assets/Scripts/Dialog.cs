@@ -29,33 +29,33 @@ namespace TFGNarrativa.Dialog
         public Option[] options;
 
         // Class getters
-        int GetCharacter()
+        public int GetCharacter()
         {
             return character;
         }
 
-        int GetNextNode()
+        public int GetNextNode()
         {
             return nextNode;
         }
 
-        int GetEmotion()
+        public int GetEmotion()
         {
             return emotion;
         }
 
-        string GetText()
+        public string GetText()
         {
             return text;
         }
 
         // Option getters
-        int GetNumOptions()
+        public int GetNumOptions()
         {
             return options.Length;
         } // GetNumOptions
 
-        Option GetOption(int index)
+        public Option GetOption(int index)
         {
             if (options.Length > 0)
             {
@@ -67,7 +67,7 @@ namespace TFGNarrativa.Dialog
             } // else
         } // GetOption
 
-        int GetNodePtrOption(int index)
+        public int GetNodePtrOption(int index)
         {
             if (options.Length > 0)
             {
@@ -79,7 +79,7 @@ namespace TFGNarrativa.Dialog
             } // else
         } // GetNodePtrOption
 
-        string GetOptionText(int index)
+        public string GetOptionText(int index)
         {
             if (options.Length > 0)
             {
