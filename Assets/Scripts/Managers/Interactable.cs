@@ -18,20 +18,7 @@ public class Interactable : MonoBehaviour{
     public virtual void Interact (){}
 
     void Update(){
-        if(Vector3.Distance(player.transform.position, transform.position) <= 5f){
-            Debug.DrawLine(player.transform.position, transform.position, Color.green);
-            range = true;
-            if(playerInteractionManager.objectToInteract is null)
-                playerInteractionManager.objectToInteract = this;
-            
-        }
-        else
-        {
-            Debug.DrawLine(player.transform.position, transform.position, Color.red);
-            range = false;
-            if(playerInteractionManager.objectToInteract == this)
-                playerInteractionManager.objectToInteract = null;
-        }
+        
     }
 
     public void InputReceived(InputAction.CallbackContext c)
@@ -43,6 +30,25 @@ public class Interactable : MonoBehaviour{
             Debug.Log("Interaccion");
             Interact();
             interact = true;
+        }
+    }
+    
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(col.gameObject.CompareTag("Player"))
+        {
+            range = true;
+            playerInteractionManager.objectToInteract = this;
+        }
+    }
+    
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if(col.gameObject.CompareTag("Player"))
+        {
+            range = false;
+            if(playerInteractionManager.objectToInteract == this)
+                playerInteractionManager.objectToInteract = null;
         }
     }
 }
