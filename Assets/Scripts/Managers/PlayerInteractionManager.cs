@@ -11,7 +11,7 @@ public class PlayerInteractionManager : MonoBehaviour
     
     public void InputReceived(InputAction.CallbackContext c)
     {
-        if (objectToInteract != null)
+        if (objectToInteract != null && c.performed)
         {
             objectToInteract.InputReceived(c);
         }

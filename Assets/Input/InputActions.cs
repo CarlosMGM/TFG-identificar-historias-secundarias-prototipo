@@ -32,7 +32,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""id"": ""0e8b11be-2fd6-453e-bfbc-032acfb34b37"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Press(behavior=1)""
                 }
             ],
             ""bindings"": [
@@ -95,7 +95,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""e02dde8f-6bb3-4061-9dea-f057bd81d0b7"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=1)"",
                     ""processors"": """",
                     ""groups"": ""Default"",
                     ""action"": ""Interaction"",
