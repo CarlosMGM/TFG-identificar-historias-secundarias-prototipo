@@ -13,7 +13,7 @@ public class QuestFinisherNPC : NPC
         QuestManager.EndQuest(quest);
     }
     
-    void Start()
+    new void Start()
     {
         base.Start();
         quest = new Quest();

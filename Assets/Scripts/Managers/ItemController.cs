@@ -21,7 +21,7 @@ public class ItemController : Interactable
             // Eliminar del mapa
             if (itemPickUp)
             {
-                Debug.Log("You Pick Up item:" + item.name);
+                Debug.Log("You Pick Up item:" + item.itemName);
                 Destroy(gameObject);
             }
         }

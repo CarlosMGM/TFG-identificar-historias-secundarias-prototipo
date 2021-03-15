@@ -14,9 +14,9 @@ public class QuestStarterNPC : NPC
         Debug.Log("starting quest " + quest);
         QuestManager.StartQuest(quest);
     }
-    
-    
-    void Start()
+
+
+    new void Start()
     {
         base.Start();
         quest = new Quest();
