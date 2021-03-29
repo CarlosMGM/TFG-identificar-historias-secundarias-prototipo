@@ -3,9 +3,9 @@ public class ItemController : Interactable
 {
     public Item item;
     public bool itemPickUp = false;
+
     public override void Interact()
     {
-        // base.Interact();
         item = GetComponent<Item>(); //guardamos el componente
         pickUp();
     }
@@ -15,15 +15,13 @@ public class ItemController : Interactable
         if (!itemPickUp)
         {
             //funcion de añadir al inventario
-            //bool itemPickedUp = Inventory.Add(item);
+            Inventory.AddItem(item); //debería ser bool?
+            //Inventory.Instance.AddItem(item)
             itemPickUp = true;
-
             // Eliminar del mapa
-            if (itemPickUp)
-            {
-                Debug.Log("You Pick Up item:" + item.itemName);
-                Destroy(gameObject);
-            }
+            Debug.Log("You Pick Up item:" + item.itemName);
+            Destroy(gameObject);
+            
         }
     }
 }

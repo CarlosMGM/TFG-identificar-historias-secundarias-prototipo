@@ -14,7 +14,18 @@ public class Item : MonoBehaviour
     //Tipo clave o consumible
     public ItemType type;
 
+    //Sprite
+    public Sprite spriteItem;
+
+    //Effect
+
+    private void Start(){
+        spriteItem = GetComponent<SpriteRenderer>().sprite;
+    }
+
     //Funcion de efecto
-    public virtual void Effect(){}
+    public virtual void Effect(){
+        
+    }
 
 }
