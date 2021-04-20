@@ -14,6 +14,22 @@
                     "interactions": ""
                 },
                 {
+                    "name": "MenuMov",
+                    "type": "Button",
+                    "id": "0640411a-d06e-4ba3-97f1-2e3735456559",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "MenuInter",
+                    "type": "Button",
+                    "id": "c1a4340b-51cb-4103-a1f2-970759dc452d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)"
+                },
+                {
                     "name": "Interaction",
                     "type": "Button",
                     "id": "0e8b11be-2fd6-453e-bfbc-032acfb34b37",
@@ -86,6 +102,72 @@
                     "processors": "",
                     "groups": "Default",
                     "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Arrows",
+                    "id": "999596ed-d431-4b30-b561-45defc73a8ef",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MenuMov",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "f18b4f7d-f77b-472f-89ef-41661e3c92df",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "MenuMov",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "9a2b949d-82ad-40b9-b416-4bf25c29a430",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "MenuMov",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "left",
+                    "id": "babc714e-d500-4497-bfef-7f9bf80f2619",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "MenuMov",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "aee8cd17-4e14-42ee-882b-413d2e112de4",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "MenuMov",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "c128f3d1-befa-4e75-9a35-6c288a585c47",
+                    "path": "<Keyboard>/space",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "MenuInter",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

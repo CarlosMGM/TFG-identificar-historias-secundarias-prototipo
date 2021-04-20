@@ -23,9 +23,30 @@
     {
       "character": 1,
       "emotion": 2,
-      "nextNode": 4,
+      "nextNode": -1,
       "text": "Otro texto de prueba, que coincidencia.",
-      "options": []
+      "options": [
+        {
+          "nodePtr": 2,
+          "text": "Esto es otra opción. 1"
+        },
+        {
+          "nodePtr": 3,
+          "text": "Esto es otra opción. 2"
+        },
+        {
+          "nodePtr": 4,
+          "text": "Esto es otra opción. 3"
+        },
+        {
+          "nodePtr": 5,
+          "text": "Esto es otra opción. 4"
+        },
+        {
+          "nodePtr": 6,
+          "text": "Esto es otra opción. 5"
+        }
+      ]
     },
     {
       "character": 1,
@@ -46,6 +67,20 @@
       "emotion": 2,
       "nextNode": -2,
       "text": "The Return of the Node",
+      "options": []
+    },
+    {
+      "character": 1,
+      "emotion": 2,
+      "nextNode": -2,
+      "text": "What a coincidence, is this a secret test?",
+      "options": []
+    },
+    {
+      "character": 1,
+      "emotion": 2,
+      "nextNode": -2,
+      "text": "The second secret you found, you may now be a jedi",
       "options": []
     }
   ]

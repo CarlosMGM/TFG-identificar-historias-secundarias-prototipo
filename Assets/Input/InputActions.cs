@@ -27,6 +27,22 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""MenuMov"",
+                    ""type"": ""Button"",
+                    ""id"": ""0640411a-d06e-4ba3-97f1-2e3735456559"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""MenuInter"",
+                    ""type"": ""Button"",
+                    ""id"": ""c1a4340b-51cb-4103-a1f2-970759dc452d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)""
+                },
+                {
                     ""name"": ""Interaction"",
                     ""type"": ""Button"",
                     ""id"": ""0e8b11be-2fd6-453e-bfbc-032acfb34b37"",
@@ -101,6 +117,72 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""Interaction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrows"",
+                    ""id"": ""999596ed-d431-4b30-b561-45defc73a8ef"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MenuMov"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""f18b4f7d-f77b-472f-89ef-41661e3c92df"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default"",
+                    ""action"": ""MenuMov"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9a2b949d-82ad-40b9-b416-4bf25c29a430"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default"",
+                    ""action"": ""MenuMov"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""babc714e-d500-4497-bfef-7f9bf80f2619"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default"",
+                    ""action"": ""MenuMov"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""aee8cd17-4e14-42ee-882b-413d2e112de4"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Default"",
+                    ""action"": ""MenuMov"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c128f3d1-befa-4e75-9a35-6c288a585c47"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Default"",
+                    ""action"": ""MenuInter"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +204,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         // Default
         m_Default = asset.FindActionMap("Default", throwIfNotFound: true);
         m_Default_Movement = m_Default.FindAction("Movement", throwIfNotFound: true);
+        m_Default_MenuMov = m_Default.FindAction("MenuMov", throwIfNotFound: true);
+        m_Default_MenuInter = m_Default.FindAction("MenuInter", throwIfNotFound: true);
         m_Default_Interaction = m_Default.FindAction("Interaction", throwIfNotFound: true);
     }
 
@@ -173,12 +257,16 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Default;
     private IDefaultActions m_DefaultActionsCallbackInterface;
     private readonly InputAction m_Default_Movement;
+    private readonly InputAction m_Default_MenuMov;
+    private readonly InputAction m_Default_MenuInter;
     private readonly InputAction m_Default_Interaction;
     public struct DefaultActions
     {
         private @InputActions m_Wrapper;
         public DefaultActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Default_Movement;
+        public InputAction @MenuMov => m_Wrapper.m_Default_MenuMov;
+        public InputAction @MenuInter => m_Wrapper.m_Default_MenuInter;
         public InputAction @Interaction => m_Wrapper.m_Default_Interaction;
         public InputActionMap Get() { return m_Wrapper.m_Default; }
         public void Enable() { Get().Enable(); }
@@ -192,6 +280,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMovement;
+                @MenuMov.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMenuMov;
+                @MenuMov.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMenuMov;
+                @MenuMov.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMenuMov;
+                @MenuInter.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMenuInter;
+                @MenuInter.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMenuInter;
+                @MenuInter.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnMenuInter;
                 @Interaction.started -= m_Wrapper.m_DefaultActionsCallbackInterface.OnInteraction;
                 @Interaction.performed -= m_Wrapper.m_DefaultActionsCallbackInterface.OnInteraction;
                 @Interaction.canceled -= m_Wrapper.m_DefaultActionsCallbackInterface.OnInteraction;
@@ -202,6 +296,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @MenuMov.started += instance.OnMenuMov;
+                @MenuMov.performed += instance.OnMenuMov;
+                @MenuMov.canceled += instance.OnMenuMov;
+                @MenuInter.started += instance.OnMenuInter;
+                @MenuInter.performed += instance.OnMenuInter;
+                @MenuInter.canceled += instance.OnMenuInter;
                 @Interaction.started += instance.OnInteraction;
                 @Interaction.performed += instance.OnInteraction;
                 @Interaction.canceled += instance.OnInteraction;
@@ -221,6 +321,8 @@ public class @InputActions : IInputActionCollection, IDisposable
     public interface IDefaultActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnMenuMov(InputAction.CallbackContext context);
+        void OnMenuInter(InputAction.CallbackContext context);
         void OnInteraction(InputAction.CallbackContext context);
     }
 }
