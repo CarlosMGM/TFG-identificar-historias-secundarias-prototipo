@@ -40,7 +40,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""id"": ""c1a4340b-51cb-4103-a1f2-970759dc452d"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Press(behavior=1)""
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Interaction"",
@@ -177,7 +177,7 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""c128f3d1-befa-4e75-9a35-6c288a585c47"",
                     ""path"": ""<Keyboard>/space"",
-                    ""interactions"": ""Press(behavior=2)"",
+                    ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Default"",
                     ""action"": ""MenuInter"",
