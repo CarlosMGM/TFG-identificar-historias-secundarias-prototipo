@@ -7,4 +7,6 @@ public class NPC : Interactable
     {
         Debug.Log("Saying dialogue I guess");
     }
+
+    public virtual void DialogEnded(){}
 }

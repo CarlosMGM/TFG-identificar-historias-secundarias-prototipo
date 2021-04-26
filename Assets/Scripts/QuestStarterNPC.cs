@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class QuestStarterNPC : NPC
 {
@@ -9,21 +6,27 @@ public class QuestStarterNPC : NPC
 
     public Quest quest;
     public Item givenItem;
+    public bool dialogConsumed; 
     
     public override void Interact()
     {
-        if(!(quest.activated || quest.used))
+        if(!(quest.activated || quest.used) && !dialogConsumed)
         {
-            Debug.Log("starting quest " + quest);
-            quest.activated = true;
-            QuestManager.StartQuest(quest);
-        }
+            DialogManager.GetInstance().StartDialog(0, 0, gameObject);
+        } // if
+        // Faltaría un else if con un diálogo básico
         else
         {
             base.Interact();
-        }
-    }
+        } // else
+    } // Interact
 
+    public override void DialogEnded()
+    {
+        Debug.Log("starting quest " + quest);
+        quest.activated = true;
+        QuestManager.StartQuest(quest);
+    } // DialogEnded
 
     new void Start()
     {

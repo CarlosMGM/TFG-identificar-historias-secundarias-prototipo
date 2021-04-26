@@ -12,10 +12,6 @@ public class PlayerInteractionManager : MonoBehaviour
     {
         if (objectToInteract != null && c.performed)
         {
-            if (objectToInteract.GetComponent<QuestStarterNPC>() && !DialogManager.GetInstance().IsOnDialog())
-            {
-                DialogManager.GetInstance().StartDialog(0, 0);
-            }
             objectToInteract.InputReceived(c);
         }
     }
