@@ -28,7 +28,7 @@ public class QuestStarterNPC : NPC
         QuestManager.StartQuest(quest);
     } // DialogEnded
 
-    new void Start()
+    protected new void Start()
     {
         base.Start();
         quest = new Quest();

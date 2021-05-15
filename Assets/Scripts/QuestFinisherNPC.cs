@@ -22,7 +22,7 @@ public class QuestFinisherNPC : NPC
         }
     }
     
-    new void Start()
+    protected new void Start()
     {
         base.Start();
         quest = new Quest();

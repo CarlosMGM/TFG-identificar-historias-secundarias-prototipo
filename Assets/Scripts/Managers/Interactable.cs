@@ -7,7 +7,7 @@ public class Interactable : MonoBehaviour{
     public GameObject player;
     private PlayerInteractionManager playerInteractionManager;
 
-    public void Start(){
+    public virtual void Start(){
         player = GameObject.FindWithTag("Player");
         playerInteractionManager = player.GetComponent<PlayerInteractionManager>();
         
@@ -27,18 +27,18 @@ public class Interactable : MonoBehaviour{
             Interact();
         }
     }
-    
-    void OnCollisionEnter2D(Collision2D col)
+
+    public virtual void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.gameObject.CompareTag("Player"))
+        Debug.Log("Colisión con: " + gameObject);
+        if (col.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Colisión con: " + gameObject);
             range = true;
             playerInteractionManager.objectToInteract = this;
         }
     }
-    
-    void OnCollisionExit2D(Collision2D col)
+
+    public virtual void OnCollisionExit2D(Collision2D col)
     {
         if(col.gameObject.CompareTag("Player"))
         {
