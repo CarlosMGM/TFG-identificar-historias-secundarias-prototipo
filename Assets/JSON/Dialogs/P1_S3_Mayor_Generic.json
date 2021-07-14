@@ -1,0 +1,11 @@
+{
+  "init": "Mayor",
+  "nodes": [
+    {
+      "character": "Mayor",
+      "nextNode": -2,
+      "text": "Venga, sal hacia Dara que tengo a mi amigo esperando.",
+      "options": []
+    }
+  ]
+}

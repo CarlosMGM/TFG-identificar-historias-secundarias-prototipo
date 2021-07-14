@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TFGNarrativa.FileManagement;
+using Narrative_Engine;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,12 @@ public class GameManager : MonoBehaviour
         if(g_instance == null)
         {
             g_instance = this;
+
+            var path = Application.dataPath;
+
+            path = path.Remove(0, 2);
+            
+            NarrativeEngine.init(path + "/JSON");
 
             DontDestroyOnLoad(gameObject); // Make it don't destroy
         } // if

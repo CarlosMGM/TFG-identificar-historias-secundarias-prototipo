@@ -1,0 +1,11 @@
+{
+  "init": "Dimitri",
+  "nodes": [
+    {
+      "character": "Dimitri",
+      "nextNode": -2,
+      "text": "Pobre Kanda, lleva buscando a su padre días, creo que iba a pedir ayuda al alcalde y los alguaciles.",
+      "options": []
+    }
+  ]
+}

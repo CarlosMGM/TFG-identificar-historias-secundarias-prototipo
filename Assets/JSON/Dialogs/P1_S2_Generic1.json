@@ -1,0 +1,11 @@
+{
+  "init": "Heren",
+  "nodes": [
+    {
+      "character": "Heren",
+      "nextNode": -2,
+      "text": "El alcalde parecía bastante nervioso esta mañana.",
+      "options": []
+    }
+  ]
+}
