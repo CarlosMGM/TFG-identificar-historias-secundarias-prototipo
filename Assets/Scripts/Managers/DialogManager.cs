@@ -7,12 +7,14 @@ using UnityEngine.InputSystem;
 using TFGNarrativa.FileManagement;
 using TFGNarrativa.Dialog;
 
+using Narrative_Engine;
+
 public class DialogManager : MonoBehaviour
 {
     private static DialogManager g_instance;
 
     private GameObject character; // Character that initializes dialog
-    private Dialog m_current; // Current options and text
+    private TFGNarrativa.Dialog.Dialog m_current; // Current options and text
     private int m_arrowPos = 0;
     private int m_currentBundle, m_currentIndex;
     private bool m_onDialog = false;
@@ -317,4 +319,14 @@ public class DialogManager : MonoBehaviour
 
         LoadNextOptionPack();
     } // InstantiateOptions
+
+    public void loadDialogues(StoryScene storyScene, Narrative_Engine.StoryScene engineScene)
+    {
+        NarrativeEngine.loadDialogues(engineScene);
+
+        foreach (var engineDialog in engineScene.dialogs)
+        {
+            //TODO: PASAR DIALOGO DE MOTOR A UNITY
+        }
+    }
 } // DialogManager

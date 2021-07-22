@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class QuestStarterNPC : NPC
 {
     // Start is called before the first frame update
 
     public Quest quest;
-    public Item givenItem;
+    [FormerlySerializedAs("givenItem")] public Item itemToGive;
     public bool dialogConsumed; 
     
     public override void Interact()
@@ -32,7 +33,7 @@ public class QuestStarterNPC : NPC
     {
         base.Start();
         quest = new Quest();
-        quest.givenItem = givenItem;
+        //quest.itemToGive = itemToGive;
     }
 
 }
