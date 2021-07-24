@@ -60,6 +60,8 @@ public class QuestManager
         quest.nextQuestId = engineQuest.m_next;
 
         StoryScene previousScene = null;
+
+        int index = 0;
             
         foreach (var engineScene in engineQuest.scenes)
         {
@@ -84,16 +86,18 @@ public class QuestManager
             DialogManager.GetInstance().loadDialogues(scene, engineScene);
 
 
-            AssignCharacter(scene, GameObject.Find(engineScene.dialogs[0].nodes[0].character), starter);
+            AssignCharacter(scene, GameObject.Find(engineScene.dialogs[0].init), starter, index);
 
                 
             previousScene = scene;
                 
             quest.storyScenes.Add(scene);
+
+            index++;
         }
     }
 
-    private static void AssignCharacter(StoryScene scene, GameObject character, bool starter)
+    private static void AssignCharacter(StoryScene scene, GameObject character, bool starter, int sceneNumber)
     {
         if (starter)
         {
@@ -109,6 +113,7 @@ public class QuestManager
             npc.itemToGive = scene.itemToGive;
             npc.itemToTake = scene.itemToTake;
             npc.enabled = true;
+            npc.sceneNumber = sceneNumber;
         }
     }
 }

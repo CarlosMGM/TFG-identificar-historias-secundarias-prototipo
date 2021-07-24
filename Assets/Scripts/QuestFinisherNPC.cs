@@ -10,10 +10,11 @@ public class QuestFinisherNPC : NPC
     public Quest quest;
     public Item itemToGive;
     public Item itemToTake;
+    public int sceneNumber;
     
     public override void Interact()
     {
-        if(quest.activated && !quest.used)
+        if(quest.activated && !quest.used && quest._sceneCount == sceneNumber)
         {
             Debug.Log("Finishing quest " + quest);
             QuestManager.DoScene(quest);

@@ -12,7 +12,7 @@ public class Quest
 
     public List<StoryScene> storyScenes { get; } = new List<StoryScene>();
 
-    private int _sceneCount = 0;
+    public int _sceneCount = 0;
     
     // class "State"?
     public MonoBehaviour playerState;
