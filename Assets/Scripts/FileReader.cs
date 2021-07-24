@@ -1,11 +1,10 @@
 ﻿namespace TFGNarrativa.FileManagement
 {
     using UnityEngine;
-    using TFGNarrativa.Dialog;
 
     public class FileReader
     {
-        NodeList list;
+        //NodeList list;
 
         public int NodeListLoader(DialogBundle bnd, int index)
         {
@@ -21,26 +20,27 @@
             } // else
 
             // Load from JSON
-            list = JsonUtility.FromJson<NodeList>(data.text);
+            //list = JsonUtility.FromJson<NodeList>(data.text);
 
             return 0;
         } // NodeListLoader
 
         public int GetNumNodes()
         {
-            return list.nodes.Length;
+            //return list.nodes.Length;
+            return 0;
         } // GetNumNodes
 
-        public Dialog GetNode(int index)
-        {
-            if(list.nodes.Length > 0)
-            {
-                return list.nodes[index];
-            } // if
-            else
-            {
-                return null;
-            } // else
-        } // GetNode
+        //public Dialog GetNode(int index)
+        //{
+        //    if(list.nodes.Length > 0)
+        //    {
+        //        return list.nodes[index];
+        //    } // if
+        //    else
+        //    {
+        //        return null;
+        //    } // else
+        //} // GetNode
     } // FileReader
 } // namespace

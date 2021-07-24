@@ -5,14 +5,14 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 using TFGNarrativa.FileManagement;
-using TFGNarrativa.Dialog;
+using Narrative_Engine;
 
 public class DialogManager : MonoBehaviour
 {
     private static DialogManager g_instance;
 
     private GameObject character; // Character that initializes dialog
-    private Dialog m_current; // Current options and text
+    private Node m_current; // Current options and text
     private int m_arrowPos = 0;
     private int m_currentBundle, m_currentIndex;
     private bool m_onDialog = false;
@@ -102,21 +102,21 @@ public class DialogManager : MonoBehaviour
                     Debug.Log("OWO");
                     g_instance.m_plainText.SetActive(false);
 
-                    if (g_instance.m_current.GetNumOptions() > 0)
+                    if (g_instance.m_current.options.Count > 0)
                     {
                         Debug.Log("UWU");
                         ShowOptions();
                     } // if
                     else
                     {
-                        int next = g_instance.m_current.GetNextNode();
+                        int next = g_instance.m_current.nextNode;
                         NextDialog(next);
                     } // else
                 } // If the plain text is currently active, change to options
                 else if (g_instance.m_optionContainer.transform.parent.gameObject.activeSelf)
                 {
                     // If not, check option and get next node
-                    int next = g_instance.m_current.GetOption(g_instance.m_arrowPos * (3 * g_instance.m_currentOptionPack)).nodePtr;
+                    int next = g_instance.m_current.options[g_instance.m_arrowPos * (3 * g_instance.m_currentOptionPack)].nodePtr;
 
                     // Load next dialog
                     NextDialog(next);
@@ -254,14 +254,14 @@ public class DialogManager : MonoBehaviour
         else
         {
             // Si da tiempo, meter una animación 
-            g_instance.m_current = g_instance.m_reader.GetNode(index); // Get the first one
+            //g_instance.m_current = g_instance.m_reader.GetNode(index); // Get the first one
             g_instance.m_selector.gameObject.SetActive(false);
 
             g_instance.m_plainText.SetActive(true);
             g_instance.m_optionContainer.transform.parent.gameObject.SetActive(false);
 
             g_instance.m_name.text = GameManager.GetInstance().GetCharacterName(g_instance.m_currentBundle, g_instance.m_currentIndex);
-            g_instance.m_text.text = g_instance.m_current.GetText();
+            g_instance.m_text.text = g_instance.m_current.text;
         } // else
     } // NextDialog
 
@@ -297,17 +297,17 @@ public class DialogManager : MonoBehaviour
             Transform option = container.GetChild(i);
             option.gameObject.SetActive(false); // Deactivate gameObject
 
-            if ((i + (3 * pack)) < g_instance.m_current.GetNumOptions() && g_instance.m_current.GetOptionText(i + (3 * pack)) != null)
+            if ((i + (3 * pack)) < g_instance.m_current.options.Count && g_instance.m_current.options[i + (3 * pack)].text != null)
             {
                 option.gameObject.SetActive(true);
-                option.transform.GetChild(0).GetComponent<Text>().text = g_instance.m_current.GetOptionText(i + (3 * pack));
+                option.transform.GetChild(0).GetComponent<Text>().text = g_instance.m_current.options[i + (3 * pack)].text;
             } // if
         } // for
     } // LoadNextOptionPack
 
     public void InstantiateOptions()
     {
-        float optCount = g_instance.m_current.GetNumOptions(); // Counter for the options text
+        float optCount = g_instance.m_current.options.Count; // Counter for the options text
         float count = g_instance.m_optionContainer.transform.childCount; // Number of options
 
         g_instance.m_numOptionPacks = Mathf.CeilToInt(optCount / count);
