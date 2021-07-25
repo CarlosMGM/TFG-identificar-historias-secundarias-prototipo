@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Narrative_Engine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class StoryScene
     // Siguiente escena
     public StoryScene nextScene;
 
-    public NPC character;
+    public GameObject character;
     
     // Si la escena está consumida o no.
     public bool _used;
@@ -33,7 +34,7 @@ public class StoryScene
 
     public void StartDialogues()
     {
-        // Suelta la rutina de diálogos correspondiente.
-        Debug.Log("Bla bla bla");
+        /*Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
+        DialogManager.GetInstance().StartDialog(engineQuest.scenes[quest._sceneCount].dialogs[0], 0, character.gameObject);*/
     }
 }

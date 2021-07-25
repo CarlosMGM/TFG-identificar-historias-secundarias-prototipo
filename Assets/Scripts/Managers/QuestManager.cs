@@ -85,10 +85,14 @@ public class QuestManager
 
                 
             DialogManager.GetInstance().loadDialogues(engineScene);
-
-            if(engineScene.dialogs.Count > 0)
+            if (engineScene.dialogs.Count > 0)
             {
-                AssignCharacter(scene, GameObject.Find(engineScene.dialogs[0].init), starter, index);
+                GameObject character = GameObject.Find(engineScene.dialogs[0].init);
+                scene.character = character;
+                if (character != null)
+                {
+                    AssignCharacter(scene, character, starter, index);
+                }
             }
 
                 

@@ -17,6 +17,8 @@ public class QuestFinisherNPC : NPC
         if(quest.activated && !quest.used && quest._sceneCount == sceneNumber)
         {
             Debug.Log("Finishing quest " + quest);
+            Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
+            DialogManager.GetInstance().StartDialog(engineQuest.scenes[quest._sceneCount].dialogs[0], 0, gameObject);
             QuestManager.DoScene(quest);
             if (quest.used)
             {
@@ -33,8 +35,8 @@ public class QuestFinisherNPC : NPC
     protected new void Start()
     {
         base.Start();
-        quest = new Quest();
-        quest.activated = true;
+        //quest = new Quest();
+        // quest.activated = true;
        // quest.itemToTake = itemToGive;
     }
 }
