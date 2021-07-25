@@ -20,7 +20,7 @@ public class QuestFinisherNPC : NPC
             QuestManager.DoScene(quest);
             if (quest.used)
             {
-                var nextQuest = NarrativeEngine.getChapterById(quest.nextQuestId);
+                var nextQuest = NarrativeEngine.getNextChapterById(quest.questId);
                 QuestManager.LoadQuests(nextQuest);
             }
         }

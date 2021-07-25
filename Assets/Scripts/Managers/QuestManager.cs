@@ -57,7 +57,8 @@ public class QuestManager
 
         Quest quest = new Quest();
 
-        quest.nextQuestId = engineQuest.m_next;
+        //quest.nextQuestId = engineQuest.m_next;
+        quest.questId = engineQuest.m_id;
 
         StoryScene previousScene = null;
 
@@ -83,7 +84,7 @@ public class QuestManager
                 scene.itemToGive = GameObject.Find(engineScene.m_itemToTake).GetComponent<Item>();
 
                 
-            DialogManager.GetInstance().loadDialogues(scene, engineScene);
+            DialogManager.GetInstance().loadDialogues(engineScene);
 
 
             AssignCharacter(scene, GameObject.Find(engineScene.dialogs[0].init), starter, index);

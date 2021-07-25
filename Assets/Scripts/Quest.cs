@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Quest
 {
-    public string nextQuestId;
+    //public string nextQuestId;
+    public string questId;
     
     // class "Scene"
     public StoryScene startScene;

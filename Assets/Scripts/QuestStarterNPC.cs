@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
+using Narrative_Engine;
 
 public class QuestStarterNPC : NPC
 {
@@ -13,7 +14,8 @@ public class QuestStarterNPC : NPC
     {
         if(!(quest.activated || quest.used) && !dialogConsumed)
         {
-            DialogManager.GetInstance().StartDialog(0, 0, gameObject);
+            Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
+            DialogManager.GetInstance().StartDialog(engineQuest.scenes[0].dialogs[0], 0, gameObject);
         } // if
         // Faltaría un else if con un diálogo básico
         else
