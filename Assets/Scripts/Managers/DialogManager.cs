@@ -116,7 +116,8 @@ public class DialogManager : MonoBehaviour
                 else if (g_instance.m_optionContainer.transform.parent.gameObject.activeSelf)
                 {
                     // If not, check option and get next node
-                    int next = g_instance.m_current.options[g_instance.m_arrowPos * (3 * g_instance.m_currentOptionPack)].nodePtr;
+                    // int next = g_instance.m_current.options[g_instance.m_arrowPos * (3 * g_instance.m_currentOptionPack)].nodePtr;
+                    int next = g_instance.m_current.options[g_instance.m_arrowPos].nodePtr;
 
                     // Load next dialog
                     NextDialog(next);

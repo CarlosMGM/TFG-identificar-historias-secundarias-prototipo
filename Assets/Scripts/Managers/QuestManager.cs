@@ -85,14 +85,15 @@ public class QuestManager
 
                 
             DialogManager.GetInstance().loadDialogues(engineScene);
-            if (engineScene.dialogs.Count > 0)
+            int dialogIndex = 0;
+            foreach(var dialog in engineScene.dialogs)
             {
-                GameObject character = GameObject.Find(engineScene.dialogs[0].init);
-                scene.character = character;
+                GameObject character = GameObject.Find(dialog.init);
                 if (character != null)
                 {
-                    AssignCharacter(scene, character, starter, index);
+                    AssignCharacter(scene, character, starter, index, dialogIndex);
                 }
+                dialogIndex++;
             }
 
                 
@@ -104,23 +105,28 @@ public class QuestManager
         }
     }
 
-    private static void AssignCharacter(StoryScene scene, GameObject character, bool starter, int sceneNumber)
+    private static void AssignCharacter(StoryScene scene, GameObject character, bool starter, int sceneNumber, int dialogIndex)
     {
         if (starter)
         {
-            var npc = character.AddComponent<QuestStarterNPC>();
+            QuestStarterNPC npc;
+            if (!character.GetComponent<QuestStarterNPC>()) npc = character.AddComponent<QuestStarterNPC>();
+            else npc = character.GetComponent<QuestStarterNPC>();
             npc.quest = scene.quest;
             npc.itemToGive = scene.itemToGive;
             npc.enabled = true;
         }
         else
         {
-            var npc = character.AddComponent<QuestFinisherNPC>();
+            QuestFinisherNPC npc;
+            if (!character.GetComponent<QuestFinisherNPC>()) npc = character.AddComponent<QuestFinisherNPC>();
+            else npc = character.GetComponent<QuestFinisherNPC>();
             npc.quest = scene.quest;
             npc.itemToGive = scene.itemToGive;
             npc.itemToTake = scene.itemToTake;
             npc.enabled = true;
             npc.sceneNumber = sceneNumber;
+            if(npc.dialogIndex == -1) npc.dialogIndex = dialogIndex;
         }
     }
 }

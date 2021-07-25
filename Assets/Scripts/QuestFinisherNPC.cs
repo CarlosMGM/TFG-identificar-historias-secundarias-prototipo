@@ -11,6 +11,7 @@ public class QuestFinisherNPC : NPC
     public Item itemToGive;
     public Item itemToTake;
     public int sceneNumber;
+    public int dialogIndex = -1;
     
     public override void Interact()
     {
@@ -18,7 +19,7 @@ public class QuestFinisherNPC : NPC
         {
             Debug.Log("Finishing quest " + quest);
             Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
-            DialogManager.GetInstance().StartDialog(engineQuest.scenes[quest._sceneCount].dialogs[0], 0, gameObject);
+            DialogManager.GetInstance().StartDialog(engineQuest.scenes[quest._sceneCount].dialogs[dialogIndex], 0, gameObject);
             QuestManager.DoScene(quest);
             if (quest.used)
             {
