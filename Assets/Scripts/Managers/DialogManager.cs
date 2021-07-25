@@ -9,7 +9,7 @@ using System.Collections.Generic;
 public class DialogManager : MonoBehaviour
 {
     private static DialogManager g_instance;
-
+    private Narrative_Engine.Dialog m_dialog;
     private GameObject character; // Character that initializes dialog
     private Narrative_Engine.Node m_current; // Current options and text
     private int m_arrowPos = 0;
@@ -233,6 +233,7 @@ public class DialogManager : MonoBehaviour
             
             // g_instance.m_currentBundle = bundle;
             g_instance.m_currentIndex = index;
+            g_instance.m_dialog = dialog;
             g_instance.m_current = dialog.nodes[index];
             g_instance.m_onDialog = true;
             g_instance.character = c;
@@ -257,6 +258,7 @@ public class DialogManager : MonoBehaviour
         {
             // Si da tiempo, meter una animación 
             // g_instance.m_current = g_instance.m_reader.GetNode(index); // Get the first one
+            g_instance.m_current = g_instance.m_dialog.nodes[index];
             g_instance.m_selector.gameObject.SetActive(false);
 
             g_instance.m_plainText.SetActive(true);

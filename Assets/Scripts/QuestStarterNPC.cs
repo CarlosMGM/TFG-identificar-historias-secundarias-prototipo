@@ -34,7 +34,7 @@ public class QuestStarterNPC : NPC
     protected new void Start()
     {
         base.Start();
-        quest = new Quest();
+        //quest = new Quest();
         //quest.itemToGive = itemToGive;
     }
 

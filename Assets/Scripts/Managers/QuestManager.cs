@@ -86,8 +86,10 @@ public class QuestManager
                 
             DialogManager.GetInstance().loadDialogues(engineScene);
 
-
-            AssignCharacter(scene, GameObject.Find(engineScene.dialogs[0].init), starter, index);
+            if(engineScene.dialogs.Count > 0)
+            {
+                AssignCharacter(scene, GameObject.Find(engineScene.dialogs[0].init), starter, index);
+            }
 
                 
             previousScene = scene;
