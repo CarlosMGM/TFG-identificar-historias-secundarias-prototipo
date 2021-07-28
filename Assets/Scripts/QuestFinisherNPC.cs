@@ -24,7 +24,7 @@ public class QuestFinisherNPC : NPC
             if (quest.used)
             {
                 var nextQuest = NarrativeEngine.getNextChapterById(quest.questId);
-                QuestManager.LoadQuests(nextQuest);
+                QuestManager.LoadQuest(nextQuest);
             }
         }
         else

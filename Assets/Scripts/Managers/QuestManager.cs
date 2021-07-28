@@ -5,7 +5,6 @@ using Narrative_Engine;
 
 public class QuestManager
 {
-
     public static void StartQuest(Quest quest)
     {
         // Da objeto/inicia las rutinas, etc
@@ -46,7 +45,7 @@ public class QuestManager
         quest.ProgressQuest();
     }
     
-    public static void LoadQuests(Narrative_Engine.Quest engineQuest)
+    public static void LoadQuest(Narrative_Engine.Quest engineQuest)
     {
         /*
          * Paso 1: Leer quest de motor.
@@ -88,10 +87,21 @@ public class QuestManager
             int dialogIndex = 0;
             foreach(var dialog in engineScene.dialogs)
             {
-                GameObject character = GameObject.Find(dialog.init);
-                if (character != null)
+                GameObject character;
+                if (dialog.init == "MainCharacter")
                 {
-                    AssignCharacter(scene, character, starter, index, dialogIndex);
+                    Debug.Log("Pensamiento");
+                    character = GameObject.Find(engineScene.m_place);
+                }
+                else
+                    character = GameObject.Find(dialog.init);
+                if (!(character is null))
+                {
+                    var npc = AssignCharacter(scene, character, starter, index, dialogIndex);
+                    if (dialog.init == "MainCharacter")
+                    {
+                        character.GetComponent<Place>().createTrigger(npc);
+                    }
                 }
                 dialogIndex++;
             }
@@ -105,7 +115,7 @@ public class QuestManager
         }
     }
 
-    private static void AssignCharacter(StoryScene scene, GameObject character, bool starter, int sceneNumber, int dialogIndex)
+    private static NPC AssignCharacter(StoryScene scene, GameObject character, bool starter, int sceneNumber, int dialogIndex)
     {
         if (starter)
         {
@@ -115,6 +125,7 @@ public class QuestManager
             npc.quest = scene.quest;
             npc.itemToGive = scene.itemToGive;
             npc.enabled = true;
+            return npc;
         }
         else
         {
@@ -127,6 +138,8 @@ public class QuestManager
             npc.enabled = true;
             npc.sceneNumber = sceneNumber;
             if(npc.dialogIndex == -1) npc.dialogIndex = dialogIndex;
+            return npc;
         }
+        
     }
 }

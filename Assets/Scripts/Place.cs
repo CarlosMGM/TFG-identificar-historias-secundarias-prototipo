@@ -18,6 +18,8 @@ public class Place : MonoBehaviour
 
     private Transform _playerTransform;
     private bool _loaded = false;
+
+    public QuestTrigger questTrigger = null;
     
     // Start is called before the first frame update
     void Start()
@@ -28,15 +30,18 @@ public class Place : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_loaded
-            && _playerTransform.position.x > upLeftCoordinates.x
-            && _playerTransform.position.x < downRightCoordinates.x
-            && _playerTransform.position.y > downRightCoordinates.y
-            && _playerTransform.position.y < upLeftCoordinates.y)
-        {
-            _loaded = true;
-            LoadQuests();
+        if( _playerTransform.position.x > upLeftCoordinates.x
+               && _playerTransform.position.x < downRightCoordinates.x
+               && _playerTransform.position.y > downRightCoordinates.y
+               && _playerTransform.position.y < upLeftCoordinates.y){
+            if(!_loaded)
+            {
+                _loaded = true;
+                LoadQuests();
+            }
+            questTrigger?.ActivateTrigger();
         }
+
     }
 
     private void LoadQuests()
@@ -44,7 +49,13 @@ public class Place : MonoBehaviour
         var engineQuests = NarrativeEngine.getChaptersByPlace(name);
         foreach (var engineQuest in engineQuests)
         {
-            QuestManager.LoadQuests(engineQuest);
+            QuestManager.LoadQuest(engineQuest);
         }
+    }
+
+    public void createTrigger(NPC npc)
+    {
+        questTrigger = gameObject.AddComponent<QuestTrigger>();
+        questTrigger.trigger = npc;
     }
 }
