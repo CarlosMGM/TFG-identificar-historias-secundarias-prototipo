@@ -281,6 +281,7 @@ public class DialogManager : MonoBehaviour
 
     public void ShowOptions()
     {
+        g_instance.m_arrowPos = 0;
         g_instance.m_optionContainer.transform.parent.gameObject.SetActive(true);
 
         int options = g_instance.m_optionContainer.transform.childCount;
