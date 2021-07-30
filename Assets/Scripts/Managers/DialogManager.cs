@@ -225,7 +225,7 @@ public class DialogManager : MonoBehaviour
         } // if
     } // SelectorAtBottom
 
-    public void StartDialog(Narrative_Engine.Dialog dialog, int index, GameObject c)
+    public void StartDialog(Dialog dialog, int index, GameObject c)
     {
         if (!g_instance.m_onDialog)
         {
@@ -255,6 +255,13 @@ public class DialogManager : MonoBehaviour
             // Notify Dialog ending
             character.GetComponent<NPC>().DialogEnded();
         } // if
+        else if(index == -3)
+        {
+            g_instance.m_plainText.SetActive(false);
+            g_instance.m_optionContainer.transform.parent.gameObject.SetActive(false);
+
+            g_instance.m_onDialog = false;
+        }
         else
         {
             // Si da tiempo, meter una animación 
@@ -331,5 +338,30 @@ public class DialogManager : MonoBehaviour
         {
             //TODO: PASAR DIALOGO DE MOTOR A UNITY
         }*/
+    }
+
+    public void LoadGenericDialogsByPlace(string place)
+    {
+        List<Dialog> genericDialogs = NarrativeEngine.loadGenericDialogs(place);
+
+        foreach(Dialog dialog in genericDialogs)
+        {
+            GameObject character = GameObject.Find(dialog.init);
+            if(character != null)
+            {
+                if(character.GetComponent<QuestStarterNPC>())
+                {
+                    character.GetComponent<QuestStarterNPC>().GenericDialog = dialog;
+                }
+                else if (character.GetComponent<QuestFinisherNPC>())
+                {
+                    character.GetComponent<QuestFinisherNPC>().GenericDialog = dialog;
+                }
+                else
+                {
+                    character.AddComponent<NPC>().GenericDialog = dialog;
+                }
+            }
+        }
     }
 } // DialogManager

@@ -38,6 +38,7 @@ public class Place : MonoBehaviour
             {
                 _loaded = true;
                 LoadQuests();
+                LoadGenericDialogs();
             }
             questTrigger?.ActivateTrigger();
         }
@@ -57,5 +58,9 @@ public class Place : MonoBehaviour
     {
         questTrigger = gameObject.AddComponent<QuestTrigger>();
         questTrigger.trigger = npc;
+    }
+    private void LoadGenericDialogs()
+    {
+        DialogManager.GetInstance().LoadGenericDialogsByPlace(gameObject.name);
     }
 }
