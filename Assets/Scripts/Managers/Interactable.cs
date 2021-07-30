@@ -25,6 +25,8 @@ public class Interactable : MonoBehaviour{
         {
             Debug.Log("Interaccion con " + gameObject);
             Interact();
+            range = false;
+            playerInteractionManager.objectToInteract = null;
         }
     }
 
