@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
             var path = Application.dataPath;
 
+            Debug.Log("path: " + path);
+
             path = path.Remove(0, 2);
             
             NarrativeEngine.init(path + "/JSON");

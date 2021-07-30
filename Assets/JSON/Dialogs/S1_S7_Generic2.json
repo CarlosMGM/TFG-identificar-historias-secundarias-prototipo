@@ -1,0 +1,11 @@
+{
+    "init": "Mark",
+    "nodes": [
+        {
+            "character": "Mark",
+            "nextNode": -3,
+            "text": "¡Hombre Julie! Tus tíos te estaban buscando.",
+            "options": []
+        }
+    ]
+}

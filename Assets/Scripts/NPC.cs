@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Narrative_Engine;
+using UnityEngine;
 public class NPC : Interactable
 {
     [Header("Wandering")]
@@ -12,8 +13,11 @@ public class NPC : Interactable
     private Vector2 wanderingDirection;
     private float wanderingTimer;
     private bool moving;
+    private Dialog genericDialog;
 
     private Rigidbody2D body;
+
+    public Dialog GenericDialog { get => genericDialog; set => genericDialog = value; }
 
     protected new void Start()
     {
@@ -28,7 +32,11 @@ public class NPC : Interactable
 
     public override void Interact()
     {
-        Debug.Log("Saying dialogue I guess");
+        if(genericDialog != null)
+        {
+            DialogManager.GetInstance().StartDialog(genericDialog, 0, gameObject);
+        }
+        else Debug.Log("No generic dialog");
     }
 
     private void Update()

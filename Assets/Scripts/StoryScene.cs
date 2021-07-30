@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Narrative_Engine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,28 +11,30 @@ public class StoryScene
     
     // Lugar donde ocurre la escena
     public Place place;
+
+    public Quest quest { get; set; }
     
     // Siguiente escena
     public StoryScene nextScene;
+
+    public GameObject character;
     
     // Si la escena está consumida o no.
     public bool _used;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    // class Item
+    public Item itemToGive;
+    public Item itemToTake;
+
+    public StoryScene()
     {
-        
+        itemToGive = null;
+        itemToTake = null;
     }
 
     public void StartDialogues()
     {
-        // Suelta la rutina de diálogos correspondiente.
-        Debug.Log("Bla bla bla");
+        /*Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
+        DialogManager.GetInstance().StartDialog(engineQuest.scenes[quest._sceneCount].dialogs[0], 0, character.gameObject);*/
     }
 }

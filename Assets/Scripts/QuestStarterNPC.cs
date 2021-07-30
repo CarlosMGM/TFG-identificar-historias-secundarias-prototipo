@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
+using Narrative_Engine;
 
 public class QuestStarterNPC : NPC
 {
     // Start is called before the first frame update
 
     public Quest quest;
-    public Item givenItem;
+    [FormerlySerializedAs("givenItem")] public Item itemToGive;
     public bool dialogConsumed; 
     
     public override void Interact()
     {
         if(!(quest.activated || quest.used) && !dialogConsumed)
         {
-            DialogManager.GetInstance().StartDialog(0, 0, gameObject);
+            Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
+            DialogManager.GetInstance().StartDialog(engineQuest.scenes[0].dialogs[0], 0, gameObject);
         } // if
         // Faltaría un else if con un diálogo básico
         else
@@ -31,8 +34,8 @@ public class QuestStarterNPC : NPC
     protected new void Start()
     {
         base.Start();
-        quest = new Quest();
-        quest.givenItem = givenItem;
+        //quest = new Quest();
+        //quest.itemToGive = itemToGive;
     }
 
 }

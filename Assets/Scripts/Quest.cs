@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Quest
 {
-    // clase "Lugar"
-    public Place origin;
-    public Place goal;
+    //public string nextQuestId;
+    public string questId;
     
     // class "Scene"
     public StoryScene startScene;
-    public StoryScene endScene;
+    public StoryScene endScene { get; }
+
+    public List<StoryScene> storyScenes { get; } = new List<StoryScene>();
+
+    public int _sceneCount = 0;
     
     // class "State"?
     public MonoBehaviour playerState;
@@ -20,9 +23,6 @@ public class Quest
     public NPC questFinisher;
     */
     
-    // class Item
-    public Item givenItem;
-    public Item itemToGive;
     
     // Class QuestType?
     // public MonoBehaviour questType;
@@ -37,9 +37,6 @@ public class Quest
         startScene = new StoryScene();
         endScene = new StoryScene();
 
-        givenItem = null;
-        itemToGive = null;
-
         used = false;
     }
 
@@ -47,5 +44,18 @@ public class Quest
     public void BeginScene(StoryScene scene)
     {
         scene.StartDialogues();
+    }
+
+    public StoryScene CurrentStoryScene()
+    {
+        return storyScenes[_sceneCount];
+    }
+
+    public void ProgressQuest()
+    {
+        storyScenes[_sceneCount]._used = true;
+        _sceneCount++;
+        if (_sceneCount == storyScenes.Count)
+            used = true;
     }
 }
