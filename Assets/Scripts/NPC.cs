@@ -135,5 +135,5 @@ public class NPC : Interactable
         base.OnCollisionExit2D(collision);
     }
 
-    public virtual void DialogEnded(){}
+    public virtual void DialogEnded(bool success){}
 }

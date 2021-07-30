@@ -245,23 +245,24 @@ public class DialogManager : MonoBehaviour
 
     public void NextDialog(int index)
     {
-        if (index == -2)
+        if (index < -1)
         {
             g_instance.m_plainText.SetActive(false);
             g_instance.m_optionContainer.transform.parent.gameObject.SetActive(false);
 
             g_instance.m_onDialog = false;
 
-            // Notify Dialog ending
-            character.GetComponent<NPC>().DialogEnded();
+            switch (index)
+            {
+                case -2:
+                    // Notify Dialog ending
+                    character.GetComponent<NPC>().DialogEnded(true);
+                    break;
+                case -3:
+                    character.GetComponent<NPC>().DialogEnded(false);
+                    break;
+            } // switch
         } // if
-        else if(index == -3)
-        {
-            g_instance.m_plainText.SetActive(false);
-            g_instance.m_optionContainer.transform.parent.gameObject.SetActive(false);
-
-            g_instance.m_onDialog = false;
-        }
         else
         {
             // Si da tiempo, meter una animación 
@@ -334,11 +335,7 @@ public class DialogManager : MonoBehaviour
     public void loadDialogues(Narrative_Engine.StoryScene engineScene)
     {
         NarrativeEngine.loadDialogues(engineScene);
-        /*foreach (var engineDialog in engineScene.dialogs)
-        {
-            //TODO: PASAR DIALOGO DE MOTOR A UNITY
-        }*/
-    }
+    } // loadDialogues
 
     public void LoadGenericDialogsByPlace(string place)
     {

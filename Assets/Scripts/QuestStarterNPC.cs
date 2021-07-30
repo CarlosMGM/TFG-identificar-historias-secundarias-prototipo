@@ -24,18 +24,16 @@ public class QuestStarterNPC : NPC
         } // else
     } // Interact
 
-    public override void DialogEnded()
+    public override void DialogEnded(bool success)
     {
         Debug.Log("starting quest " + quest);
         quest.activated = true;
+        dialogConsumed = success;
         QuestManager.StartQuest(quest);
     } // DialogEnded
 
     protected new void Start()
     {
         base.Start();
-        //quest = new Quest();
-        //quest.itemToGive = itemToGive;
-    }
-
-}
+    } // Start
+} // QuestStarterNPC
