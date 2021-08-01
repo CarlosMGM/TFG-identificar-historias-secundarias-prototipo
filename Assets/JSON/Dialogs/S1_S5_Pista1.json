@@ -1,10 +1,10 @@
 {
-    "init": "MainCharacter",
+    "init": "Mochila",
     "nodes": [
         {
             "character": "MainCharacter",
             "nextNode": -2,
-            "text": "Eh, esta mochila parece que es de ella.",
+            "text": "Eh, esta bolsa parece que es de ella.",
             "options": []
         }
     ]
