@@ -96,7 +96,7 @@ public class QuestManager
                 {
                     var npc = AssignCharacter(scene, character, starter, index, dialogIndex);
 
-                    if (scene.place.characters.Exists(x => npc.gameObject == x))
+                    if (!(scene.place.characters.Exists(x => npc.gameObject == x)))
                     {
                         npc.Teleport(scene.place);
                     }
