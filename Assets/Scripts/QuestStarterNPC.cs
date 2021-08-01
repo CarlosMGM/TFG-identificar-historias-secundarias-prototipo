@@ -8,7 +8,7 @@ public class QuestStarterNPC : NPC
 
     public Quest quest;
     [FormerlySerializedAs("givenItem")] public Item itemToGive;
-    public bool dialogConsumed; 
+    public bool dialogConsumed = false; 
     
     public override void Interact()
     {
@@ -26,14 +26,20 @@ public class QuestStarterNPC : NPC
 
     public override void DialogEnded(bool success)
     {
-        Debug.Log("starting quest " + quest);
-        quest.activated = true;
-        dialogConsumed = success;
-        QuestManager.StartQuest(quest);
+        Debug.Log("starting quest? " + success);
+        quest.activated = success;
+        if(!dialogConsumed) dialogConsumed = success;
+        if(success) QuestManager.StartQuest(quest);
     } // DialogEnded
 
     protected new void Start()
     {
         base.Start();
     } // Start
+
+    public override void Update()
+    {
+        base.Update();
+        quest.ProgressQuest();
+    }
 } // QuestStarterNPC

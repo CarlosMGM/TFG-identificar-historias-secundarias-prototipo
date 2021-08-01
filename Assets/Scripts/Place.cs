@@ -30,11 +30,9 @@ public class Place : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if( _playerTransform.position.x > upLeftCoordinates.x
-               && _playerTransform.position.x < downRightCoordinates.x
-               && _playerTransform.position.y > downRightCoordinates.y
-               && _playerTransform.position.y < upLeftCoordinates.y){
-            if(!_loaded)
+        if (PlayerIsInPlace())
+        {
+            if (!_loaded)
             {
                 _loaded = true;
                 LoadQuests();
@@ -43,6 +41,14 @@ public class Place : MonoBehaviour
             questTrigger?.ActivateTrigger();
         }
 
+    }
+
+    public bool PlayerIsInPlace()
+    {
+        return _playerTransform.position.x > upLeftCoordinates.x
+                       && _playerTransform.position.x < downRightCoordinates.x
+                       && _playerTransform.position.y > downRightCoordinates.y
+                       && _playerTransform.position.y < upLeftCoordinates.y;
     }
 
     private void LoadQuests()

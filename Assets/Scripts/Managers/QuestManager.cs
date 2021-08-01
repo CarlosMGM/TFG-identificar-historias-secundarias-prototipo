@@ -14,8 +14,6 @@ public class QuestManager
             Inventory.AddItem(quest.startScene.itemToGive);
             Debug.Log("¡Obtuviste " + quest.startScene.itemToGive + "!");
         }
-        
-        quest.ProgressQuest();
     }
 
     public static void DoScene(Quest quest)
@@ -42,7 +40,6 @@ public class QuestManager
             Inventory.AddItem(quest.startScene.itemToGive);
             Debug.Log("¡Obtuviste " + quest.startScene.itemToGive + "!");
         }
-        quest.ProgressQuest();
     }
     
     public static void LoadQuest(Narrative_Engine.Quest engineQuest)

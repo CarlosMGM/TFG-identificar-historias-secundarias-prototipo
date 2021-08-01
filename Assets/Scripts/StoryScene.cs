@@ -5,10 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class StoryScene
-{
-    // Lista de diálogos disponibles
-    private List<MonoBehaviour> _dialogues;
-    
+{    
     // Lugar donde ocurre la escena
     public Place place;
 
@@ -26,15 +23,21 @@ public class StoryScene
     public Item itemToGive;
     public Item itemToTake;
 
+    public bool dialogConsumed = false;
+
     public StoryScene()
     {
         itemToGive = null;
         itemToTake = null;
     }
 
-    public void StartDialogues()
+    public void ConsumeDialog()
     {
-        /*Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
-        DialogManager.GetInstance().StartDialog(engineQuest.scenes[quest._sceneCount].dialogs[0], 0, character.gameObject);*/
+        dialogConsumed = true;
+    }
+
+    public bool AreDialogsConsumed()
+    {
+        return dialogConsumed;
     }
 }

@@ -12,10 +12,11 @@ public class QuestFinisherNPC : NPC
     public Item itemToTake;
     public int sceneNumber;
     public int dialogIndex = -1;
-    
+    public bool dialogConsumed = false;
+
     public override void Interact()
     {
-        if(quest.activated && !quest.used && quest._sceneCount == sceneNumber)
+        if(quest.activated && !quest.used && quest._sceneCount == sceneNumber && !dialogConsumed)
         {
             Debug.Log("Finishing quest " + quest);
             Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
@@ -32,12 +33,24 @@ public class QuestFinisherNPC : NPC
             base.Interact();
         }
     }
-    
+
+    public override void DialogEnded(bool success)
+    {
+        Debug.Log("continuing quest? " + success);
+        if(!dialogConsumed) dialogConsumed = success;
+    } // DialogEnded
+
     protected new void Start()
     {
         base.Start();
         //quest = new Quest();
         // quest.activated = true;
        // quest.itemToTake = itemToGive;
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        quest.ProgressQuest();
     }
 }

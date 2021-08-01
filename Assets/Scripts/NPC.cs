@@ -39,7 +39,7 @@ public class NPC : Interactable
         else Debug.Log("No generic dialog");
     }
 
-    private void Update()
+    public virtual void Update()
     {
         WanderingBehaviour();
     }

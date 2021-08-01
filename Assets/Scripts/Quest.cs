@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,7 +44,7 @@ public class Quest
 
     public void BeginScene(StoryScene scene)
     {
-        scene.StartDialogues();
+        scene.ConsumeDialog();
     }
 
     public StoryScene CurrentStoryScene()
@@ -53,9 +54,19 @@ public class Quest
 
     public void ProgressQuest()
     {
-        storyScenes[_sceneCount]._used = true;
-        _sceneCount++;
-        if (_sceneCount == storyScenes.Count)
-            used = true;
+        if (CanProgressQuest())
+        {
+            storyScenes[_sceneCount]._used = true;
+            _sceneCount++;
+            if (_sceneCount == storyScenes.Count)
+                used = true;
+        }
+    }
+
+    private bool CanProgressQuest()
+    {
+        return _sceneCount < storyScenes.Count
+            && !storyScenes[_sceneCount].place.PlayerIsInPlace()
+            && storyScenes[_sceneCount].AreDialogsConsumed();
     }
 }

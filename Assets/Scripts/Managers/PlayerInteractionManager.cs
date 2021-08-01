@@ -10,7 +10,7 @@ public class PlayerInteractionManager : MonoBehaviour
     
     public void InputReceived(InputAction.CallbackContext c)
     {
-        if (objectToInteract != null && c.performed)
+        if (objectToInteract != null && c.performed && !DialogManager.GetInstance().IsOnDialog())
         {
             objectToInteract.InputReceived(c);
         }
