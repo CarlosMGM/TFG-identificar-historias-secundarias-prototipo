@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Narrative_Engine;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class QuestFinisherNPC : NPC
@@ -52,5 +53,10 @@ public class QuestFinisherNPC : NPC
     {
         base.Update();
         quest.ProgressQuest();
+    }
+
+    protected override bool NeedsToTeleport()
+    {
+        return base.NeedsToTeleport() && dialogIndex == quest._sceneCount;
     }
 }

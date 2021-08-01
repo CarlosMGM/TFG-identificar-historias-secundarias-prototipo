@@ -18,6 +18,7 @@ public class NPC : Interactable
     private bool moving;
     private Dialog genericDialog;
 
+    
     private bool needsToTeleport = false;
     private Place placeToTeleport;
     
@@ -150,10 +151,11 @@ public class NPC : Interactable
         needsToTeleport = true;
         this.placeToTeleport = placeToTeleport;
     }
-
+    
+    
     private void OnBecameInvisible()
     {
-        if (!needsToTeleport)
+        if (!NeedsToTeleport())
             return;
 
         gameObject.transform.position = placeToTeleport.validCoordinates[0];
@@ -162,5 +164,11 @@ public class NPC : Interactable
         place.characters.Remove(gameObject);
         place = placeToTeleport;
         placeToTeleport = null;
+    }
+    
+    
+    protected virtual bool NeedsToTeleport()
+    {
+        return needsToTeleport;
     }
 }
