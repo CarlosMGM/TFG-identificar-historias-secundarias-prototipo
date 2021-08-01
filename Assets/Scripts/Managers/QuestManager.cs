@@ -88,13 +88,21 @@ public class QuestManager
                 if (dialog.init == "MainCharacter")
                 {
                     Debug.Log("Pensamiento");
-                    character = GameObject.Find(engineScene.m_place);
+                    character = scene.place.gameObject;
                 }
                 else
                     character = GameObject.Find(dialog.init);
                 if (!(character is null))
                 {
                     var npc = AssignCharacter(scene, character, starter, index, dialogIndex);
+
+                    if (!(scene.place.characters.Exists(x => npc.gameObject == x)))
+                    {
+                        npc.Teleport(scene.place);
+                    }
+                    
+                    npc.place = scene.place;
+                    
                     if (dialog.init == "MainCharacter")
                     {
                         character.GetComponent<Place>().createTrigger(npc);

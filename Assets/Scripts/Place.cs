@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class Place : MonoBehaviour
 {
     // Personajes existentes.
-    private List<NPC> _characters;
+    public List<GameObject> characters;
     // Objetos localizados en el lugar.
     private List<Item> _items;
     // Lugares vecinos.
@@ -18,6 +18,8 @@ public class Place : MonoBehaviour
 
     private Transform _playerTransform;
     private bool _loaded = false;
+
+    public List<Vector2> validCoordinates;
 
     public QuestTrigger questTrigger = null;
     

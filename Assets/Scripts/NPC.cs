@@ -1,5 +1,8 @@
-﻿using Narrative_Engine;
+﻿using System;
+using Narrative_Engine;
 using UnityEngine;
+using Random = UnityEngine.Random;
+
 public class NPC : Interactable
 {
     [Header("Wandering")]
@@ -15,9 +18,15 @@ public class NPC : Interactable
     private bool moving;
     private Dialog genericDialog;
 
+    
+    private bool needsToTeleport = false;
+    private Place placeToTeleport;
+    
     private Rigidbody2D body;
 
     public Dialog GenericDialog { get => genericDialog; set => genericDialog = value; }
+
+    public Place place;
 
     protected new void Start()
     {
@@ -134,6 +143,32 @@ public class NPC : Interactable
         }
         base.OnCollisionExit2D(collision);
     }
-
+    
     public virtual void DialogEnded(bool success){}
+
+    public void Teleport(Place placeToTeleport)
+    {
+        needsToTeleport = true;
+        this.placeToTeleport = placeToTeleport;
+    }
+    
+    
+    private void OnBecameInvisible()
+    {
+        if (!NeedsToTeleport())
+            return;
+
+        gameObject.transform.position = placeToTeleport.validCoordinates[0];
+        placeToTeleport.validCoordinates.RemoveAt(0);
+
+        place.characters.Remove(gameObject);
+        place = placeToTeleport;
+        placeToTeleport = null;
+    }
+    
+    
+    protected virtual bool NeedsToTeleport()
+    {
+        return needsToTeleport;
+    }
 }
