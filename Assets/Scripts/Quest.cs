@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Narrative_Engine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,7 +60,11 @@ public class Quest
             storyScenes[_sceneCount]._used = true;
             _sceneCount++;
             if (_sceneCount == storyScenes.Count)
+            {
                 used = true;
+                var nextQuest = NarrativeEngine.getNextChapterById(questId);
+                if(nextQuest != null) QuestManager.LoadQuest(nextQuest);
+            }
         }
     }
 

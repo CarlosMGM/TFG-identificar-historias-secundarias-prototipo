@@ -51,6 +51,8 @@ public class QuestManager
          * Paso 4: Cargar los dialogos.
          */
 
+        Debug.Log("loading quest " + engineQuest.m_id);
+
         Quest quest = new Quest();
 
         //quest.nextQuestId = engineQuest.m_next;

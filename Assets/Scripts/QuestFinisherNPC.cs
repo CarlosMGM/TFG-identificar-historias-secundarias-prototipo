@@ -23,11 +23,11 @@ public class QuestFinisherNPC : NPC
             Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
             DialogManager.GetInstance().StartDialog(engineQuest.scenes[quest._sceneCount].dialogs[dialogIndex], 0, gameObject);
             QuestManager.DoScene(quest);
-            if (quest.used)
+            /*if (quest.used)
             {
                 var nextQuest = NarrativeEngine.getNextChapterById(quest.questId);
                 QuestManager.LoadQuest(nextQuest);
-            }
+            }*/
         }
         else
         {
