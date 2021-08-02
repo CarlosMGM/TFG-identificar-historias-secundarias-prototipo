@@ -41,7 +41,7 @@
   },
   {
     "m_id": "scene1_C3_P1",
-    "m_place": "Bosque_1",
+    "m_place": "Ruta_2",
     "m_next": "scene2_C3_P1",
     "m_itemToGive": "",
     "m_itemToTake": "",
