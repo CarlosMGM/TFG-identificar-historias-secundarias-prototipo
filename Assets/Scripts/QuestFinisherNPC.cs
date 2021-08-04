@@ -31,7 +31,10 @@ public class QuestFinisherNPC : NPC
         }
         else
         {
-            base.Interact();
+            if(TryGetComponent<QuestStarterNPC>(out var npc))
+                npc.Interact();
+            else
+                base.Interact();
         }
     }
 

@@ -29,7 +29,12 @@ public class QuestStarterNPC : NPC
         Debug.Log("starting quest? " + success);
         quest.activated = success;
         if(!dialogConsumed) dialogConsumed = success;
-        if(success) QuestManager.StartQuest(quest);
+        else
+        {
+            if (TryGetComponent<QuestFinisherNPC>(out var npc))
+                npc.DialogEnded(success);
+        }
+        if (success) QuestManager.StartQuest(quest);
     } // DialogEnded
 
     protected new void Start()
