@@ -12,7 +12,7 @@
         },
         {
           "nodePtr": 2,
-          "text": "No quiero una copia del Necronomicón, muchas gracias."
+          "text": "No quiero ningún libro, muchas gracias."
         },
         {
           "nodePtr": 3,
@@ -122,7 +122,7 @@
         },
         {
           "nodePtr": 12,
-          "text": "Sí, aunque supongo que la gente los buscará para llevárselos."
+          "text": "Sí, aunque alguien estará buscándolos."
         }
       ]
     },
