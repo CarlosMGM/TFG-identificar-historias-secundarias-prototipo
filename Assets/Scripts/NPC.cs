@@ -18,6 +18,8 @@ public class NPC : Interactable
     private bool moving;
     private Dialog genericDialog;
 
+    private Renderer _renderer;
+
     
     private bool needsToTeleport = false;
     private Place placeToTeleport;
@@ -36,6 +38,9 @@ public class NPC : Interactable
         interacting = false;
         moving = false;
         body = GetComponent<Rigidbody2D>();
+
+        _renderer = GetComponent<Renderer>();
+        
         base.Start();
     }
 
@@ -50,6 +55,12 @@ public class NPC : Interactable
 
     public virtual void Update()
     {
+        if (_renderer != null && !_renderer.isVisible)
+        {
+            InvisibleBehavior();
+            return;
+        }
+        
         WanderingBehaviour();
     }
 
@@ -151,9 +162,8 @@ public class NPC : Interactable
         needsToTeleport = true;
         this.placeToTeleport = placeToTeleport;
     }
-    
-    
-    private void OnBecameInvisible()
+
+    private void InvisibleBehavior()
     {
         if (!NeedsToTeleport())
             return;
@@ -164,6 +174,7 @@ public class NPC : Interactable
         place.characters.Remove(gameObject);
         place = placeToTeleport;
         placeToTeleport = null;
+        needsToTeleport = false;
     }
     
     

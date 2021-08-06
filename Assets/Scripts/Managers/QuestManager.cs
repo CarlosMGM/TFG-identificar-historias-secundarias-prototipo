@@ -98,13 +98,14 @@ public class QuestManager
                 {
                     var npc = AssignCharacter(scene, character, starter, index, dialogIndex);
 
+                    if (npc.place is null)
+                        npc.place = scene.place;
+                    
                     if (!(scene.place.characters.Exists(x => npc.gameObject == x)))
                     {
                         npc.Teleport(scene.place);
                     }
-                    
-                    npc.place = scene.place;
-                    
+
                     if (dialog.init == "MainCharacter")
                     {
                         character.GetComponent<Place>().createTrigger(npc);
@@ -124,27 +125,33 @@ public class QuestManager
 
     private static NPC AssignCharacter(StoryScene scene, GameObject character, bool starter, int sceneNumber, int dialogIndex)
     {
+        Place place = null;
+        NPC previousNPC = character.GetComponent<NPC>();
+        if (previousNPC != null)
+            place = previousNPC.place;
         if (starter)
         {
-            QuestStarterNPC npc;
-            if (!character.GetComponent<QuestStarterNPC>()) npc = character.AddComponent<QuestStarterNPC>();
-            else npc = character.GetComponent<QuestStarterNPC>();
+            QuestStarterNPC npc = character.GetComponent<QuestStarterNPC>();
+            if (npc == null) 
+                npc = character.AddComponent<QuestStarterNPC>();
             npc.quest = scene.quest;
             npc.itemToGive = scene.itemToGive;
             npc.enabled = true;
+            npc.place = place;
             return npc;
         }
         else
         {
-            QuestFinisherNPC npc;
-            if (!character.GetComponent<QuestFinisherNPC>()) npc = character.AddComponent<QuestFinisherNPC>();
-            else npc = character.GetComponent<QuestFinisherNPC>();
+            QuestFinisherNPC npc = character.GetComponent<QuestFinisherNPC>();;
+            if (npc == null) 
+                npc = character.AddComponent<QuestFinisherNPC>();
             npc.quest = scene.quest;
             npc.itemToGive = scene.itemToGive;
             npc.itemToTake = scene.itemToTake;
             npc.enabled = true;
             npc.sceneNumber = sceneNumber;
             if(npc.dialogIndex == -1) npc.dialogIndex = dialogIndex;
+            npc.place = place;
             return npc;
         }
         
