@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using Narrative_Engine;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -40,7 +41,16 @@ public class Place : MonoBehaviour
                 LoadQuests();
                 LoadGenericDialogs();
             }
-            questTrigger?.ActivateTrigger();
+
+            if (!(questTrigger is null))
+            {
+                questTrigger.ActivateTrigger();
+                if (questTrigger.enabled == false)
+                {
+                    Destroy(questTrigger);
+                    questTrigger = null;
+                }
+            }
         }
 
     }

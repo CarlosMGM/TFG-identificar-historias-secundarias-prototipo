@@ -11,6 +11,6 @@ public class QuestTrigger : MonoBehaviour
     public void ActivateTrigger()
     {
         trigger.Interact();
-        Destroy (this);
+        this.enabled = false;
     }
 }
