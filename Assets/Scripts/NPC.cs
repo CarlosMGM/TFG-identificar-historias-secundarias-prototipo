@@ -48,7 +48,7 @@ public class NPC : Interactable
     {
         if(genericDialog != null)
         {
-            DialogManager.GetInstance().StartDialog(genericDialog, 0, gameObject);
+            DialogManager.GetInstance().StartDialog(genericDialog, 0, this);
         }
         else Debug.Log("No generic dialog");
     }

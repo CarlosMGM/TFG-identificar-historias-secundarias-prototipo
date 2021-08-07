@@ -10,7 +10,7 @@ public class DialogManager : MonoBehaviour
 {
     private static DialogManager g_instance;
     private Narrative_Engine.Dialog m_dialog;
-    private GameObject character; // Character that initializes dialog
+    private NPC character; // Character that initializes dialog
     private Narrative_Engine.Node m_current; // Current options and text
     private int m_arrowPos = 0;
     // private int m_currentBundle;
@@ -225,7 +225,7 @@ public class DialogManager : MonoBehaviour
         } // if
     } // SelectorAtBottom
 
-    public void StartDialog(Dialog dialog, int index, GameObject c)
+    public void StartDialog(Dialog dialog, int index, NPC c)
     {
         if (!g_instance.m_onDialog)
         {
@@ -256,10 +256,10 @@ public class DialogManager : MonoBehaviour
             {
                 case -2:
                     // Notify Dialog ending
-                    character.GetComponent<NPC>().DialogEnded(true);
+                    character.DialogEnded(true);
                     break;
                 case -3:
-                    character.GetComponent<NPC>().DialogEnded(false);
+                    character.DialogEnded(false);
                     break;
             } // switch
         } // if

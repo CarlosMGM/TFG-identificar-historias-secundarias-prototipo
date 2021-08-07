@@ -134,10 +134,7 @@ public class QuestManager
             QuestStarterNPC npc = character.GetComponent<QuestStarterNPC>();
             if (npc == null) 
                 npc = character.AddComponent<QuestStarterNPC>();
-            
-            if(npc != previousNPC)
-                GameObject.Destroy(previousNPC);
-                npc.quest = scene.quest;
+            npc.quest = scene.quest;
             npc.itemToGive = scene.itemToGive;
             npc.enabled = true;
             npc.place = place;
@@ -148,10 +145,6 @@ public class QuestManager
             QuestFinisherNPC npc = character.GetComponent<QuestFinisherNPC>();;
             if (npc == null) 
                 npc = character.AddComponent<QuestFinisherNPC>();
-            
-            if(npc != previousNPC)
-                GameObject.Destroy(previousNPC);
-            
             npc.quest = scene.quest;
             npc.itemToGive = scene.itemToGive;
             npc.itemToTake = scene.itemToTake;

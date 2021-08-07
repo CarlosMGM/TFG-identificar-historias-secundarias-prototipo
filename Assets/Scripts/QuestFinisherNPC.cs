@@ -20,7 +20,7 @@ public class QuestFinisherNPC : NPC
         {
             Debug.Log("Finishing quest " + quest);
             Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
-            DialogManager.GetInstance().StartDialog(engineQuest.scenes[quest._sceneCount].dialogs[dialogIndex], 0, gameObject);
+            DialogManager.GetInstance().StartDialog(engineQuest.scenes[quest._sceneCount].dialogs[dialogIndex], 0, this);
             QuestManager.DoScene(quest);
             /*if (quest.used)
             {
