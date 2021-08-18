@@ -16,7 +16,7 @@ public class QuestFinisherNPC : NPC
 
     public override void Interact()
     {
-        if(quest.activated && !quest.used && quest._sceneCount == sceneNumber && !dialogConsumed)
+        if(CanInteract())
         {
             Debug.Log("Finishing quest " + quest);
             Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
@@ -60,5 +60,10 @@ public class QuestFinisherNPC : NPC
     protected override bool NeedsToTeleport()
     {
         return base.NeedsToTeleport() && dialogIndex == quest._sceneCount;
+    }
+
+    public override bool CanInteract()
+    {
+        return quest.activated && !quest.used && quest._sceneCount == sceneNumber && !dialogConsumed;
     }
 }

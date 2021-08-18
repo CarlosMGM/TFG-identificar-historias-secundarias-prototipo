@@ -12,7 +12,7 @@ public class QuestStarterNPC : NPC
     
     public override void Interact()
     {
-        if(!(quest.activated || quest.used) && !dialogConsumed)
+        if(CanInteract())
         {
             Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
             DialogManager.GetInstance().StartDialog(engineQuest.scenes[0].dialogs[0], 0, this);
@@ -47,4 +47,10 @@ public class QuestStarterNPC : NPC
         base.Update();
         quest.ProgressQuest();
     }
+    
+    public override bool CanInteract()
+    {
+        return !(quest.activated || quest.used) && !dialogConsumed;
+    }
+    
 } // QuestStarterNPC

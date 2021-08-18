@@ -46,7 +46,7 @@ public class NPC : Interactable
 
     public override void Interact()
     {
-        if(genericDialog != null)
+        if(CanInteract())
         {
             DialogManager.GetInstance().StartDialog(genericDialog, 0, this);
         }
@@ -181,5 +181,10 @@ public class NPC : Interactable
     protected virtual bool NeedsToTeleport()
     {
         return needsToTeleport;
+    }
+
+    public virtual bool CanInteract()
+    {
+        return genericDialog != null;
     }
 }

@@ -10,7 +10,10 @@ public class QuestTrigger : MonoBehaviour
 
     public void ActivateTrigger()
     {
-        trigger.Interact();
-        this.enabled = false;
+        if(trigger.CanInteract())
+        {
+            trigger.Interact();
+            this.enabled = false;
+        }
     }
 }
