@@ -18,7 +18,8 @@ public class Place : MonoBehaviour
     public Vector2 downRightCoordinates;
 
     private Transform _playerTransform;
-    private bool _loaded = false;
+    private bool _dialogsLoaded = false;
+    private bool _questsLoaded = false;
 
     public List<Vector2> validCoordinates;
 
@@ -35,11 +36,15 @@ public class Place : MonoBehaviour
     {
         if (PlayerIsInPlace())
         {
-            if (!_loaded)
+            if (!_dialogsLoaded)
             {
-                _loaded = true;
-                LoadQuests();
+                _dialogsLoaded = true;
                 LoadGenericDialogs();
+            }
+            if (!_questsLoaded)
+            {
+                _questsLoaded = true;
+                LoadQuests();
             }
 
             if (!(questTrigger is null))
@@ -51,6 +56,10 @@ public class Place : MonoBehaviour
                     questTrigger = null;
                 }
             }
+        }
+        else
+        {
+            if(_questsLoaded) _questsLoaded = false;
         }
 
     }
