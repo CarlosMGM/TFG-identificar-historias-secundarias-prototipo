@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
         } // if
     } // Awake
 
+    private void Start()
+    {
+        QuestManager.LoadQuest(NarrativeEngine.GetMainQuest());
+    }
+
     public static GameManager GetInstance()
     {
         return g_instance;
