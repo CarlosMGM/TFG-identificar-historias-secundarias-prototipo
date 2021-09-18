@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Managers;
 using Narrative_Engine;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -10,16 +11,16 @@ public class Place : MonoBehaviour
     // Personajes existentes.
     public List<GameObject> characters;
     // Objetos localizados en el lugar.
-    private List<Item> _items;
+    private List<Item> items;
     // Lugares vecinos.
-    private List<Place> _neighbouringPlaces;
+    private List<Place> neighbouringPlaces;
 
     public Vector2 upLeftCoordinates;
     public Vector2 downRightCoordinates;
 
-    private Transform _playerTransform;
-    private bool _dialogsLoaded = false;
-    private bool _questsLoaded = false;
+    private Transform playerTransform;
+    private bool dialogsLoaded = false;
+    private bool questsLoaded = false;
 
     public List<Vector2> validCoordinates;
 
@@ -28,7 +29,7 @@ public class Place : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     // Update is called once per frame
@@ -36,14 +37,14 @@ public class Place : MonoBehaviour
     {
         if (PlayerIsInPlace())
         {
-            if (!_dialogsLoaded)
+            if (!dialogsLoaded)
             {
-                _dialogsLoaded = true;
+                dialogsLoaded = true;
                 LoadGenericDialogs();
             }
-            if (!_questsLoaded)
+            if (!questsLoaded)
             {
-                _questsLoaded = true;
+                questsLoaded = true;
                 LoadQuests();
             }
 
@@ -59,29 +60,29 @@ public class Place : MonoBehaviour
         }
         else
         {
-            if(_questsLoaded) _questsLoaded = false;
+            if(questsLoaded) questsLoaded = false;
         }
 
     }
 
     public bool PlayerIsInPlace()
     {
-        return _playerTransform.position.x > upLeftCoordinates.x
-                       && _playerTransform.position.x < downRightCoordinates.x
-                       && _playerTransform.position.y > downRightCoordinates.y
-                       && _playerTransform.position.y < upLeftCoordinates.y;
+        return playerTransform.position.x > upLeftCoordinates.x
+                       && playerTransform.position.x < downRightCoordinates.x
+                       && playerTransform.position.y > downRightCoordinates.y
+                       && playerTransform.position.y < upLeftCoordinates.y;
     }
 
     private void LoadQuests()
     {
-        var engineQuests = NarrativeEngine.getChaptersByPlace(name);
+        var engineQuests = NarrativeEngine.GetChaptersByPlace(name);
         foreach (var engineQuest in engineQuests)
         {
             QuestManager.LoadQuest(engineQuest);
         }
     }
 
-    public void createTrigger(NPC npc)
+    public void CreateTrigger(NPC npc)
     {
         questTrigger = gameObject.AddComponent<QuestTrigger>();
         questTrigger.trigger = npc;

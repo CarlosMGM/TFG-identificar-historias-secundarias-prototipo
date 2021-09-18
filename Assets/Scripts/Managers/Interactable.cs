@@ -15,10 +15,6 @@ public class Interactable : MonoBehaviour{
 
     public virtual void Interact (){}
 
-    void Update(){
-        
-    }
-
     public void InputReceived(InputAction.CallbackContext c)
     {
         if (range)

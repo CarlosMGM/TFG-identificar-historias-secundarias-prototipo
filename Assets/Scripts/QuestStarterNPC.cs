@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Managers;
+using UnityEngine;
 using UnityEngine.Serialization;
 using Narrative_Engine;
 
@@ -14,7 +15,7 @@ public class QuestStarterNPC : NPC
     {
         if(CanInteract())
         {
-            Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
+            Narrative_Engine.Quest engineQuest = NarrativeEngine.GetChapterById(quest.questId);
             DialogManager.GetInstance().StartDialog(engineQuest.scenes[0].dialogs[0], 0, this);
         } // if
         // Faltaría un else if con un diálogo básico

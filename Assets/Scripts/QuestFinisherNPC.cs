@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using Narrative_Engine;
 using UnityEngine;
 
@@ -19,7 +20,7 @@ public class QuestFinisherNPC : NPC
         if(CanInteract())
         {
             Debug.Log("Finishing quest " + quest);
-            Narrative_Engine.Quest engineQuest = NarrativeEngine.getChapterById(quest.questId);
+            Narrative_Engine.Quest engineQuest = NarrativeEngine.GetChapterById(quest.questId);
             DialogManager.GetInstance().StartDialog(engineQuest.scenes[quest._sceneCount].dialogs[dialogIndex], 0, this);
             QuestManager.DoScene(quest);
             /*if (quest.used)

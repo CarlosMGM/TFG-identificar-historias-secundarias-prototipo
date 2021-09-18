@@ -14,10 +14,6 @@ public class StoryScene
     // Siguiente escena
     public StoryScene nextScene;
 
-    public GameObject character;
-    
-    // Si la escena está consumida o no.
-    public bool _used;
 
     // class Item
     public Item itemToGive;

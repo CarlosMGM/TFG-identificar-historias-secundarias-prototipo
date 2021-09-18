@@ -6,33 +6,33 @@ namespace Utilities
 {
     public class Scaler
     {
-        Vector2 _refRes;
-        Vector2 _currRes;
+        Vector2 refRes;
+        Vector2 currRes;
 
-        float _unityUds;
+        float unityUds;
 
         public Scaler(Vector2 res, Vector2 refRes, int camSize)
         {
-            _currRes = res;
-            _refRes = refRes;
+            currRes = res;
+            this.refRes = refRes;
 
-            _unityUds = res.y / (2 * camSize);
+            unityUds = res.y / (2 * camSize);
         } // Constructor
 
         public Vector3 ScaleToFitScreen(Vector3 sizeInUnits, Vector3 scale)
         {
             Vector3 temp = sizeInUnits;
 
-            temp.x *= _unityUds;
-            temp.y *= _unityUds;
+            temp.x *= unityUds;
+            temp.y *= unityUds;
 
-            temp.x = _currRes.x;
+            temp.x = currRes.x;
 
             temp.y = (temp.x * sizeInUnits.y) / sizeInUnits.x;
 
             // Reconvert to Unity units
-            temp.x = temp.x / _unityUds;
-            temp.y = temp.y / _unityUds;
+            temp.x = temp.x / unityUds;
+            temp.y = temp.y / unityUds;
 
             // New scale to apply
             return resizeObjectScale(sizeInUnits, temp, scale);
@@ -139,7 +139,7 @@ namespace Utilities
         /// <returns> (float) Value resized. </returns>
         public float ResizeX(float x)
         {
-            return (x * _currRes.x) / _refRes.x;
+            return (x * currRes.x) / refRes.x;
         } // ResizeX
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace Utilities
         /// <returns> (float) Value resized. </returns>
         public float ResizeY(float y)
         {
-            return (y * _currRes.y) / _refRes.y;
+            return (y * currRes.y) / refRes.y;
         } // ResizeY
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Utilities
         /// <returns> (float) Conversion value. </returns>
         public float UnityUds()
         {
-            return _unityUds;
+            return unityUds;
         } // UnityUds
 
         /// <summary>
@@ -175,7 +175,7 @@ namespace Utilities
         /// <returns> (Vector3) Current resolution. </returns>
         public Vector2 CurrentResolution()
         {
-            return _currRes;
+            return currRes;
         } // CurrentResolution
     } // Scaler
 } // namespace

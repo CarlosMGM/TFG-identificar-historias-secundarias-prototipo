@@ -57,12 +57,11 @@ public class Quest
     {
         if (CanProgressQuest())
         {
-            storyScenes[_sceneCount]._used = true;
             _sceneCount++;
             if (_sceneCount == storyScenes.Count)
             {
                 used = true;
-                var nextQuest = NarrativeEngine.getNextChapterById(questId);
+                var nextQuest = NarrativeEngine.GetNextChapterById(questId);
                 if(nextQuest != null) QuestManager.LoadQuest(nextQuest);
             }
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Managers;
 using UnityEngine;
 using Narrative_Engine;
 
@@ -51,12 +52,12 @@ public class QuestManager
          * Paso 4: Cargar los dialogos.
          */
 
-        Debug.Log("loading quest " + engineQuest.m_id);
+        Debug.Log("loading quest " + engineQuest.id);
 
         Quest quest = new Quest();
 
         //quest.nextQuestId = engineQuest.m_next;
-        quest.questId = engineQuest.m_id;
+        quest.questId = engineQuest.id;
 
         StoryScene previousScene = null;
 
@@ -66,7 +67,7 @@ public class QuestManager
         {
             StoryScene scene = new StoryScene();
             scene.quest = quest;
-            scene.place = GameObject.Find(engineScene.m_place).GetComponent<Place>();
+            scene.place = GameObject.Find(engineScene.place).GetComponent<Place>();
 
             bool starter = previousScene is null;
 
@@ -75,14 +76,14 @@ public class QuestManager
             else
                 quest.startScene = scene;
                 
-            if (engineScene.m_itemToGive != "")
-                scene.itemToGive = GameObject.Find(engineScene.m_itemToGive).GetComponent<Item>();
+            if (engineScene.itemToGive != "")
+                scene.itemToGive = GameObject.Find(engineScene.itemToGive).GetComponent<Item>();
                     
-            if (engineScene.m_itemToTake != "")
-                scene.itemToGive = GameObject.Find(engineScene.m_itemToTake).GetComponent<Item>();
+            if (engineScene.itemToTake != "")
+                scene.itemToGive = GameObject.Find(engineScene.itemToTake).GetComponent<Item>();
 
                 
-            DialogManager.GetInstance().loadDialogues(engineScene);
+            DialogManager.GetInstance().LoadDialogues(engineScene);
             int dialogIndex = 0;
             foreach(var dialog in engineScene.dialogs)
             {
@@ -101,14 +102,14 @@ public class QuestManager
                     if (npc.place is null)
                         npc.place = scene.place;
                     
-                    if (!(scene.place.characters.Exists(x => npc.gameObject == x)))
+                    if (npc.gameObject != character && !(scene.place.characters.Exists(x => npc.gameObject == x)))
                     {
                         npc.Teleport(scene.place);
                     }
 
                     if (dialog.init == "MainCharacter")
                     {
-                        character.GetComponent<Place>().createTrigger(npc);
+                        character.GetComponent<Place>().CreateTrigger(npc);
                     }
                 }
                 dialogIndex++;
